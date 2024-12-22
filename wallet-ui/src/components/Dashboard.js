@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, Typography, Table, TableBody, TableCell, TableRow, TableHead } from '@mui/material';
+import { TextField, Button, Box, Typography } from '@mui/material';
 import { addFunds, withdrawFunds, getTransactionHistory } from '../services/api';
 import Logout from './Logout'; 
+import TransactionHistory from './TransactionHistory'; 
 
 const Dashboard = () => {
   const [balance, setBalance] = useState(0);
@@ -120,27 +121,7 @@ const Dashboard = () => {
         </Button>
 
         {/* Transaction History */}
-        <Typography variant="h6" gutterBottom sx={{ marginTop: 4 }}>
-          Transaction History
-        </Typography>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Date</TableCell>
-              <TableCell>Type</TableCell>
-              <TableCell>Amount</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {transactions.map((transaction) => (
-              <TableRow key={transaction.id}>
-                <TableCell>{new Date(transaction.timestamp).toLocaleString()}</TableCell>
-                <TableCell>{transaction.type.charAt(0).toUpperCase() + transaction.type.slice(1)}</TableCell>
-                <TableCell>${transaction.amount.toFixed(2)}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <TransactionHistory transactions={transactions} />
       </Box>
 
       {/* Logout Button */}

@@ -11,7 +11,7 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
-  // Initialize authentication state from localStorage
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -21,9 +21,8 @@ export const AuthProvider = ({ children }) => {
 
   const login = (token, name) => {
     localStorage.setItem('token', token); // Save the token
-    // localStorage.setItem('name', name);  // Save the username
     setIsAuthenticated(true);
-    navigate('/dashboard'); // Redirect to dashboard
+    navigate('/dashboard');
   };
   
 
